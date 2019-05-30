@@ -1,60 +1,70 @@
-#! /usr/env python
-
 # We make a dictionary for each student:
 lloyd = {
-  "name": "Lloyd",
-  "homework": [90.0, 97.0, 75.0, 92.0],
-  "quizzes": [88.0, 40.0, 94.0],
-  "tests": [75.0, 90.0]
+    "name": "Lloyd",
+    "homework": [90.0, 97.0, 75.0, 92.0],
+    "quizzes": [88.0, 40.0, 94.0],
+    "tests": [75.0, 90.0]
 }
 alice = {
-  "name": "Alice",
-  "homework": [100.0, 92.0, 98.0, 100.0],
-  "quizzes": [82.0, 83.0, 91.0],
-  "tests": [89.0, 97.0]
+    "name": "Alice",
+    "homework": [100.0, 92.0, 98.0, 100.0],
+    "quizzes": [82.0, 83.0, 91.0],
+    "tests": [89.0, 97.0]
 }
 tyler = {
-  "name": "Tyler",
-  "homework": [0.0, 87.0, 75.0, 22.0],
-  "quizzes": [0.0, 75.0, 78.0],
-  "tests": [100.0, 100.0]
+    "name": "Tyler",
+    "homework": [0.0, 87.0, 75.0, 22.0],
+    "quizzes": [0.0, 75.0, 78.0],
+    "tests": [100.0, 100.0]
 }
 
 students = [alice, lloyd, tyler]
 
 # To calculate an average score
+
+
 def average(numbers):
-  total = sum(numbers)
-  total = float(total)
-  return total/len(numbers)
+    total = sum(numbers)
+    total = float(total)
+    return total/len(numbers)
 
 # To calculate an overall average a given students homework, quizzes and tests, taking into account weighting for each parameter
+
+
 def get_average(student):
-  homework = average(student["homework"])
-  quizzes = average(student["quizzes"])
-  tests = average(student["tests"])
-  return 0.1 * homework + 0.3 * quizzes + 0.6 * tests
+    homework = average(student["homework"])
+    quizzes = average(student["quizzes"])
+    tests = average(student["tests"])
+    return 0.1 * homework + 0.3 * quizzes + 0.6 * tests
 
 # To work out the average score for the whole class
-def get_class_average(class_list):
-  results = [] # Create an empty list to tally results
-  for student in class_list: # For iteration loop
-    student_avg = get_average(student) # Call previous function to get each students average score and assign the result to variable student_avg
-    results.append(student_avg) # Append this new variable to the end of the results list. 
-  return average(results) # performs the 'average' calculation on the result and returns it.
 
-print get_class_average(students)
+
+def get_class_average(class_list):
+    results = []  # Create an empty list to tally results
+    for student in class_list:  # For iteration loop
+        # Call previous function to get each students average score and assign the result to variable student_avg
+        student_avg = get_average(student)
+        # Append this new variable to the end of the results list.
+        results.append(student_avg)
+    # performs the 'average' calculation on the result and returns it.
+    return average(results)
+
+
+print(get_class_average(students))
+
 
 def get_letter_grade(score):
-  if score >= 90:
-    return 'A'
-  elif score >= 80:
-    return 'B'
-  elif score >= 70:
-    return 'C'
-  elif score >= 60:
-    return 'D'
-  else:
-    return 'F'
-print get_letter_grade(get_class_average(students))
+    if score >= 90:
+        return 'A'
+    elif score >= 80:
+        return 'B'
+    elif score >= 70:
+        return 'C'
+    elif score >= 60:
+        return 'D'
+    else:
+        return 'F'
 
+
+print(get_letter_grade(get_class_average(students)))
